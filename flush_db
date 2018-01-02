@@ -1,0 +1,7 @@
+#!venv/bin/python
+#import os
+#os.system('rm ../cumc.db')
+
+from cumc.model import first_time_setup
+first_time_setup()
+

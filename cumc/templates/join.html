@@ -1,0 +1,86 @@
+{% extends '_base.html' %}
+
+{% block main %}
+
+  <p class=centre>
+    You logged in as {{ g.auth }}.
+    <a class=link href="{{ url_for('logout') }}">Logout?</a>
+
+  <p class=cta>
+    Before you join,<br>
+    we need to make sure you're a nice person.
+
+  <h2>Please fill in this form:</h2>
+
+{% endblock %}
+{% block extra %}
+<form method=post>
+<div class="section section-second signature-form">
+
+  <h2>
+    I, the undersigned,<br>
+    promise <i>not to be an asshole</i>.
+  </h2>
+
+  <canvas id="signature" width=512 height=192></canvas>
+  <input type=hidden name=signature id="signature-value" value="{{ signature }}">
+
+  <p class=centre>
+    Use your mouse to sign. <a class=link id="clear-signature">Try again</a>
+
+</div>
+<div class="section section-first">
+
+    {% if real_name_error %}
+    <p class="cta error">
+      Please enter your full name<br>
+      (both first name and last name).
+    {% endif %}
+
+    {% if g.auth.principal %}
+    <p class=centre>
+      We've tried to guess your real name using the University Lookup service.
+    {% endif %}
+
+    <p class=cta>
+      Real name:
+      <input name=real_name value="{{ real_name }}">
+    <p class=centre>
+      Your real name and signature will be shared with other players.<br>
+      We like knowing who everyone is!
+    <p class=cta>
+      <button type=submit class="button button-third">Join</button>
+
+</div>
+</form>
+{% endblock %}
+{% block end %}
+
+<script src="/static/lib/signature_pad.min.js"></script>
+<script>
+var canvas = $('#signature')[0];
+var input = $('#signature-value')[0];
+var submit = $('button')[0];
+
+var signaturePad = new SignaturePad(canvas, {
+  onEnd: function() {
+    input.value = signaturePad.toDataURL();
+    submit.disabled = false;
+  },
+});
+
+if (input.value) {
+  signaturePad.fromDataURL(input.value);
+} else {
+  submit.disabled = true;
+}
+
+$('#clear-signature')[0].addEventListener('click', function() {
+  input.value = "";
+  signaturePad.clear();
+  submit.disabled = true;
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+The following person joined CU Minecraft:
+
+Real name: {{ person.real_name }}
+{% if crsid %}CRSid: {{ crsid }}{% endif %}
+{% if email %}Email: {{ email }}{% endif %}
+
+Just letting you know.
+
+If they're online, go say hi!
+

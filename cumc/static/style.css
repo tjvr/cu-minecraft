@@ -1,0 +1,485 @@
+body, div, p, textarea, pre, ul, ol, li, blockquote, hr,
+table, tbody, thead, tr, td, th,
+h1, h2, h3, h4, h5, a, button, input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  list-style: none;
+  text-decoration: none;
+}
+
+* {
+  line-height: 1.25;
+}
+
+a {
+  white-space: normal;
+  cursor: pointer;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Source Sans Pro, sans-serif;
+  /*background: #23C6FF;*/
+  background: #785030;
+  color: #fff;
+  font-size: 16px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+/*****************************************************************************/
+
+.header {
+  background: #54DB23;
+  padding-top: 32px;
+  color: #785030;
+}
+.header-big {
+  padding-top: 64px;
+}
+
+.title {
+  font-weight: 700;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+.title a {
+  display: block;
+}
+.title-big {
+  font-size: 96px;
+  /*letter-spacing: -8px;*/
+  margin: 64px 0;
+  padding: 0 16px;
+}
+
+.tiles {
+  background: url(tile.png) repeat-x 50% 0;
+  height: 62px;
+  background-size: 32px 128px;
+  background-position: 0 -32px;
+}
+.tiles-big {
+  height: 192px;
+  background-position: 0 0;
+  background-size: 48px 192px;
+}
+
+.section {
+  padding: 64px 64px;
+}
+.section-main   { background: #785030; }
+.section-first  { background: #3E59B0; }
+.section-second { background: #2E8557; }
+.section-third  { background: #7240B8; }
+
+@media screen and (max-width: 720px) {
+  .header {
+    padding-top: 32px;
+  }
+  .title-big {
+    font-size: 64px;
+    letter-spacing: -4px;
+    margin: 32px 0;
+  }
+  .tiles-big {
+    height: 128px;
+    background-size: 32px 128px;
+  }
+  .main, .section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .main, .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .header {
+    padding: 16px 0;
+  }
+  .title {
+    margin-bottom: 0;
+  }
+  .tiles {
+    display: none;
+  }
+}
+
+/*****************************************************************************/
+
+.nav {
+  text-align: center;
+  margin: 1em 0;
+}
+.nav li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+/*****************************************************************************/
+
+.centre, .cta {
+  margin: 32px 0;
+  text-align: center;
+  clear: both;
+}
+.cta, h2 {
+  font-size: 32px;
+  text-align: center;
+}
+.subtle {
+  opacity: 0.5;
+}
+
+.faq {
+  font-size: 1.125em;
+}
+.faq .col {
+  text-align: left;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.325em;
+  margin: 1.25em 0 0.25em;
+}
+.faq p {
+  line-height: 1.325em;
+  margin: 0 0 1.25em;
+}
+.faq a {
+  border-bottom: 3px solid rgba(255,255,255, 0.3);
+}
+
+
+.link {
+  position: relative;
+  border-bottom: 2px solid;
+  transition: color 150ms ease-out;
+  cursor: pointer;
+}
+.link:hover {
+  color: #3F67E9;
+  transition: none;
+}
+.link:active {
+  top: 1px;
+}
+
+input {
+  background: #fff;
+  color: #000;
+  padding: 8px 4px;
+  max-width: 100%;
+}
+input.long {
+  width: 24em;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  font-size: 24px;
+  padding: 16px 24px;
+  border-radius: 6px;
+  font-weight: 400;
+  text-align: center;
+  margin: 16px 0;
+  cursor: pointer;
+}
+.button:active {
+  top: 3px;
+}
+.button strong {
+  font-size: 32px;
+  font-weight: 700;
+  display: block;
+}
+.button:disabled {
+  color: rgba(255,255,255, 0.25);
+  box-shadow: none;
+}
+
+.button-first  { background: #3E59B0; box-shadow: 0 6px #334991; }
+.button-first:active  {               box-shadow: 0 3px #334991; }
+
+.button-second { background: #2E8557; box-shadow: 0 6px #236341; }
+.button-second:active {               box-shadow: 0 3px #236341; }
+
+.button-third  { background: #7240B8; box-shadow: 0 6px #62379E; }
+.button-third:active  {               box-shadow: 0 3px #62379E; }
+
+.button .icon {
+  float: left;
+  margin: -6px 8px -6px -13px;
+}
+.button .icon-small {
+  margin: -26px -9px -30px -26px;
+  display: inline-block;
+  float: none;
+  transform: scale(0.8);
+}
+
+.icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: url(icons.png);
+}
+.icon-raven { background-position:   0px 0 }
+.icon-email { background-position: -80px 0 }
+
+.row {
+  display: block;
+  overflow: auto;
+
+  max-width: 800px;
+  margin: 0 auto;
+}
+.row:after {
+  clear: both;
+}
+
+.col {
+  float: left;
+  text-align: center;
+  width: 50%;
+  box-sizing: border-box;
+}
+.col .button-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+.col-left {
+  padding-right: 16px;
+}
+.col-right {
+  padding-left: 16px;
+}
+
+@media screen and (max-width: 720px) {
+  .col {
+    display: block;
+    float: none;
+    width: auto;
+    margin: 32px 0;
+  }
+  .col-left, .col-right {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .col .button {
+    display: block;
+    font-size: 32px;
+    padding: 20px 24px;
+  }
+  .col .button strong {
+    display: inline;
+  }
+  .col .button .icon {
+    margin-top: -18px;
+    margin-bottom: -18px;
+  }
+}
+
+.action-list {
+  list-style-type: none;
+}
+.action-list > li {
+  counter-increment: step-count;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.action {
+  display: block;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  line-height: 2.5rem;
+  position: relative;
+  padding: 0 64px;
+}
+.action:before {
+  content: counter(step-count);
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  font-size: 2rem;
+  width: 40px;
+  vertical-align: top;
+  background: #fff;
+  border-radius: 4px;
+  margin-right: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+.section-first  .action:before { color: #3E59B0; }
+.section-second .action:before { color: #2E8557; }
+.section-third  .action:before { color: #7240B8; }
+
+a.action strong {
+  text-decoration: underline;
+}
+.expanded a.action strong {
+  display: none;
+}
+
+.action, .details, .person {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.details {
+  padding: 1em 0 0;
+  box-sizing: border-box;
+  font-size: 1.125em;
+}
+
+.collapsible .action:after {
+  content: "＋";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.collapsible.expanded .action:after {
+  content: "－";
+}
+.collapsible .ellipsis {
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+.collapsible .details { display: none; }
+.collapsible.expanded .details { display: block; }
+.collapsible.expanded .ellipsis { display: none; }
+
+.details li {
+  position: relative;
+  margin: 0.5em 0;
+}
+.details li p {
+  margin: 0.5em 0;
+}
+.details li:before {
+  content: "–";
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: -1em;
+  width: 1em;
+}
+
+.details label {
+  display: inline-block;
+  width: 8em;
+  font-weight: 700;
+}
+
+.details li p.screenshot {
+  margin: 1.5em 0;
+}
+.screenshot img {
+  width: 100%;
+}
+
+.action.done {
+  opacity: 0.7
+}
+.action.done .name {
+  text-decoration: line-through;
+}
+
+.signature-form {
+  padding-top: 32px;
+  padding-bottom: 1px;
+}
+#signature {
+  display: block;
+  width: 512px;
+  height: 192px;
+  margin: 2em auto 0;
+  background: #fff;
+  cursor: crosshair;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+/*****************************************************************************/
+
+.search-form {
+  padding-bottom: 0;
+}
+.people {
+  padding-top: 0;
+  margin-top: -32px;
+}
+
+.person {
+  padding: 16px;
+  box-sizing: border-box;
+  margin-bottom: 32px;
+  position: relative;
+  min-height: 160px;
+  padding-left: 160px;
+  word-wrap: break-word;
+}
+.person-avatar {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+.person-signature {
+  background: #fff;
+  width: 256px;
+  height: 98px;
+  float: right;
+  margin-bottom: 16px;
+}
+.person-name {
+  font-size: 1.5em;
+}
+.person-minecraft {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 560px) {
+  .person-signature {
+    width: 128px;
+    height: 48px;
+  }
+}
+@media screen and (max-width: 720px) {
+  .person-signature {
+    width: 192px;
+    height: 72px;
+  }
+}
+@media screen and (min-width: 900px) {
+  .person {
+    max-width: 900px;
+  }
+  .person-signature {
+    width: 341px;
+    height: 128px;
+  }
+  .person-name {
+    font-size: 2em;
+    letter-spacing: +0.5px;
+  }
+  .person-minecraft {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,106 @@
+{% extends '_base.html' %}
+{% block header_mid %}
+
+<ul class=nav>
+  <li><b>Hi {{ g.person.first_name }}!</b>
+  {% if g.person.is_admin %}
+  <li><a class=link href="{{ url_for('control') }}">Admin tools</a>
+  {% endif %}
+  <li><a class=link href="{{ url_for('logout') }}">Logout</a>
+</ul>
+
+{% endblock %}
+{% block main %}
+
+  <h2>Welcome back!</h2>
+ 
+  <h2>
+    <a id=player-count {% if player_count %}class=link{% endif %} href="{{ url_for('people_online') }}">
+      {% if player_count == 0 %}Nobody's {% elif player_count == 1 %}One player{% else %}{{ player_count}} players{% endif %}</a>
+    online right now.
+  </h2>
+
+
+{% endblock %}
+{% block extra %}
+<div class="section section-first">
+
+  <h2><a href="https://discord.gg/xQZdpku" target="_blank">Join our <strong>Discord Chat</strong> (:</a></h2>
+
+</div>
+<div class="section section-second">
+  <div class=row>
+    <div class="col col-left">
+
+      <a href="{{ url_for('welcome') }}" class="button button-third">Get started</a>
+      <label class="button-label">for setup instructions</label>
+
+    </div>
+    <div class="col col-right">
+
+      <a href="{{ url_for('people_list') }}" class="button button-first">Search Players</a>
+      <label class="button-label">to find someone</label>
+
+    </div>
+  </div>
+</div>
+{% if g.person.minecraft %}
+<div class="section section-third">
+
+  <h2>You</h2>
+
+  <p class=centre>
+    <a href="{{ url_for('welcome') }}#username">
+      <img src="{{ g.person.minecraft.avatar('body') }}">
+    </a>
+
+  <p class=centre>
+    <a href="{{ url_for('welcome') }}#username">
+      {{ g.person.minecraft.username }}
+    </a>
+
+  <p class=centre>
+    <a href="{{ url_for('welcome') }}#username" class="button button-second">
+      Set Username
+    </a>
+
+</div>
+{% endif %}
+{% endblock %}
+{% block end %}
+<script>
+
+$('.click-to-select').forEach(function(input) {
+  var value = input.value;
+  function select() {
+    input.value = value;
+    input.setSelectionRange(0, value.length);
+  }
+  input.addEventListener('click', select);
+  input.addEventListener('focus', select);
+  input.addEventListener('change', select);
+  input.addEventListener('keydown', select);
+});
+
+var playerCount = $('#player-count')[0];
+setInterval(function() {
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", function() {
+    var result = JSON.parse(this.responseText);
+    var count = result.count;
+    playerCount.textContent = count === 0 ? 'No players'
+                            : count === 1 ? 'One player'
+                                          : count + ' players'
+    if (count === 0) {
+      playerCount.classList.remove('link');
+    } else {
+      playerCount.classList.add('link');
+    }
+  });
+  req.open("GET", "/people/online/count.json");
+  req.send();
+}, 60000);
+
+</script>
+{% endblock %}
+

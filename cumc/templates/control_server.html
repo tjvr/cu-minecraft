@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+
+{% block header_mid %}
+
+  <p class=centre>
+    <a class=link href="{{ url_for('control') }}">← all tools</a>
+
+{% endblock %}
+{% block main %}
+
+  <h2>Server Info</h2>
+
+{% endblock %}
+{% block extra %}
+<div class="section section-second">
+
+  <ul class="details">
+    <p><label>Server Name</label> CU Minecraft
+    <p><label>Server Address</label> {{ server.address }}
+  </ul>
+
+</div>
+<form method=post class="section section-third">
+
+  <p class=cta>
+    <input name=address value="{{ server.address }}" placeholder="minecraft-host.example.com" autofocus>
+  <p class=cta>
+    <button type=submit class="button button-second">
+      Update Address
+    </button>
+
+</form>
+{% endblock %}
+
+

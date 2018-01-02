@@ -1,0 +1,36 @@
+{% extends '_base.html' %}
+
+{% block main %}
+
+  <div class=centre>
+    <h2>Start playing Minecraft!</h2> 
+    <p class=centre>
+      or <a class=link href="/#you-what">find out more</a>
+    </p>
+  </div>
+
+  <div class=row>
+    <div class="col col-left">
+      <a class="button button-second" href="{{ url_for('raven_login') }}">
+        <span class="icon icon-raven"></span>
+        Login via <strong>Raven</strong>
+      </a>
+      <label class="button-label">for students</label>
+    </div>
+
+    <div class="col col-right"> 
+      <a class="button button-first" href="{{ url_for('login_email') }}">
+        <span class="icon icon-email"></span>
+        Login by <strong>Email</strong>
+      </a>
+      <label class="button-label">for humans</label>
+    </div>
+
+    <p class="centre subtle">
+      Problems? <a class=link href="{{ admin_email|safe }}">Email us</a>!
+  </div>
+
+{% endblock %}
+{% block extra %}
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+
+{% block header_mid %}
+
+  <p class=centre>
+    <a class=link href="{{ url_for('control') }}">← all tools</a>
+
+{% endblock %}
+{% block main %}
+<form method=post action="{{ url_for('control_invite') }}">
+
+  <h2>Invite someone</h2>
+
+  {% if error %}
+  <p class="cta error">
+    {{ error }}
+  {% elif success %}
+  <p class=cta>
+    Sent! Invited {{ success }}
+  {% endif %}
+
+  <p class=cta>
+    <input type=crsid name=crsid value="{{ crsid }}" placeholder="Student's crsid">
+  <p class=cta>
+    <input type=email name=email value="{{ email }}" placeholder="Their friend's email">
+  <p class=cta>
+    <input type=text name=real_name value="{{ real_name }}" placeholder="Their friend's name">
+  <p class=cta>
+    <button type=submit class="button button-first">
+      <span class="icon icon-small icon-email"></span> Register Human
+    </button>
+
+</form>
+{% endblock %}
+{% block extra %}
+<form class="section section-second" method=post action="{{ url_for('control_resend') }}">
+
+  <h2>Resend invite</h2>
+
+  {% if resend_error %}
+  <p class="cta error">
+    {{ resend_error }}
+  {% endif %}
+
+  <p class=cta>
+    <input type=email name=email value="{{ email }}" placeholder="Email">
+  <p class=cta>
+    <button type=submit class="button button-first">
+      <span class="icon icon-small icon-email"></span> Send email
+    </button>
+
+</form>
+{% endblock %}

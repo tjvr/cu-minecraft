@@ -1,0 +1,171 @@
+{% extends '_base.html' %}
+
+{% block header_mid %}
+
+<ul class=nav>
+  <li><b>Hi {{ g.person.first_name }}!</b>
+  {% if has_played %}
+  <li><a class=link href="{{ url_for('profile') }}">Profile</a>
+  {% endif %}
+  {% if g.person.is_admin %}
+  <li><a class=link href="{{ url_for('control') }}">Admin tools</a>
+  {% endif %}
+  <li><a class=link href="{{ url_for('logout') }}">Logout</a>
+</ul>
+
+{% endblock %}
+{% block main %}
+
+  <h2>Get Started</h2>
+
+{% endblock %}
+{% block extra %}
+
+<ol class=action-list>
+  <a name=username></a>
+  <li class="section section-first {% if not minecraft_username or show_username %}expanded{% endif %}">
+    {% if minecraft_username %}
+    <a class="action done">
+      <span class=name>Set your Minecraft username</span>
+      <strong>{{ minecraft_username }}</strong>
+      <strong><img src="{{ g.person.minecraft.avatar(size=24) }}"></strong>
+    </a>
+    {% else %}
+    <a class="action">
+      Set your Minecraft username
+    </a>
+    {% endif %}
+    <form class=details method=post action="{{ url_for('profile_username') }}">
+      <input type=hidden name="redirect-profile" id="username-redirect-profile">
+
+      {% if username_invalid %}
+      <p class="cta error">
+        ‘{{ username_invalid }}’ is invalid.
+      {% elif username_in_use %}
+      <p class="cta error">
+        ‘{{ username_in_use }}’ is already registered!
+      <p class=centre>
+        <a class=link href="{{ admin_email|safe }}">Email us</a> if there's a problem.
+      {% endif %}
+
+      {% if minecraft_username %}
+      <p class=cta>
+        <img src="{{ g.person.minecraft.avatar('body') }}">
+      {% endif %}
+
+      <p class=cta>
+        <input name=username placeholder="notch" value="{{ minecraft_username }}" {% if not minecraft_username %}autofocus{% endif %}>
+
+      <p class=cta>
+        <button type=submit class="button button-third">Save</button>
+    </form>
+
+  <!--
+  <li class="section section-third">
+    <a class="action {% if has_played %}done{% endif %}" target="_blank" href="https://www.java.com/en/download/manual.jsp">
+      <span class=name>Install the latest <strong>Java (64-bit)</strong></span>
+    </a>
+
+  <li class="section section-first">
+    <a class="action {% if has_played %}done{% endif %}" target="_blank" href="http://technicpack.net/download">
+      <span class=name>Download the <strong>Technic Launcher</strong></span>
+    </a>
+
+  <li class="section section-third">
+    <a class="action {% if has_played %}done{% endif %}">
+      <span class=name>Get our modpack</span>
+    </a>
+    <ul class=details>
+      <li>
+        <p>Open the <strong>Technic Launcher</strong>.
+      <li>
+        <p>Paste the following URL into the <strong>search field</strong>:
+        <p><input class="long click-to-select" value="http://api.technicpack.net/modpack/cu-minecraft">
+        <p class=screenshot><img src="/static/img/technic-search.png">
+      <li>
+        <p>Click “Install”, and it'll download the pack for you! 
+    </ul>
+  -->
+
+  <li class="section section-third">
+    <a class="action {% if has_played %}done{% endif %}" target="_blank" href="https://minecraft.net/en/download/">
+      <span class=name>Download <strong>Minecraft</strong></span>
+    </a>
+
+  <li class="section section-second">
+    <a class="action never-done">
+      <span class=name>Connect to our server!</span>
+      <strong>{{ server.address }}</strong>
+    </a>
+    <ul class=details>
+      <li>
+        <p>Click “Add Server”, and enter these details:
+        <p><label>Server Name</label> <input class="click-to-select" value="CU Minecraft">
+        <p><label>Server Address</label> <input class="click-to-select" value="{{ server.address }}">
+        <p class=screenshot><img src="/static/img/minecraft-server.png">
+        <p>We'll update the server details here if they change.
+      <li>
+        <p>If you can't connect, <a class=link href="{{ admin_email|safe }}">email the admins</a>!
+    </ul>
+
+  <li class="section section-first">
+    <a class="action never-done" target="_blank" href="https://discord.gg/xQZdpku">
+      <span class=name>Join our <strong>Discord Chat</strong> (:</span>
+    </a>
+
+</ol>
+
+  <p class=cta>
+    Have fun!
+
+  {% if has_played %}
+  <p class=cta>
+    <a href="{{ url_for('profile') }}" class="button button-second">Done</a>
+  {% endif %}
+
+{% endblock %}
+{% block end %}
+<script>
+
+$('.details').forEach(function(details) {
+  var parent = details.parentNode;
+  var link = parent.querySelector('a');
+  var isVisible = parent.classList.contains('expanded');
+  parent.classList.add('collapsible');
+  function toggle(e) {
+    isVisible = !isVisible;
+    parent.classList[isVisible ? 'add' : 'remove']('expanded');
+    if (!isVisible && !link.classList.contains('never-done')) link.classList.add('done');
+    if (e) e.preventDefault();
+  }
+  link.addEventListener('click', toggle);
+  var ellipsis = document.createElement('span');
+  ellipsis.classList.add('ellipsis');
+  ellipsis.textContent = '…';
+  link.appendChild(ellipsis);
+});
+$('.click-to-select').forEach(function(input) {
+  var value = input.value;
+  function select() {
+    input.value = value;
+    input.setSelectionRange(0, value.length);
+  }
+  input.addEventListener('click', select);
+  input.addEventListener('focus', select);
+  input.addEventListener('change', select);
+  input.addEventListener('keydown', select);
+});
+$('.action').slice(1, 3).forEach(function(action) {
+  action.addEventListener('click', function() {
+    action.classList.add('done');
+  });
+});
+if (/#?username/.test(window.location.hash)) {
+  var action = $('.action-list .section')[0];
+  action.classList.add('expanded');
+  action.scrollIntoView();
+  $('#username-redirect-profile')[0].value = 'yes';
+}
+</script>
+{% endblock %}
+d

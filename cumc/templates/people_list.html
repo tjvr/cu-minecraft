@@ -1,0 +1,93 @@
+{% extends '_base.html' %}
+{% block header_mid %}
+
+<ul class=nav>
+  <li><b>Hi {{ g.person.first_name }}!</b>
+  <li><a class=link href="{{ url_for('profile') }}">Profile</a>
+  {% if g.person.is_admin %}
+  <li><a class=link href="{{ url_for('control') }}">Admin tools</a>
+  {% endif %}
+  <li><a class=link href="{{ url_for('logout') }}">Logout</a>
+</ul>
+
+{% endblock %}
+{% block main %}
+
+  {% if has_search %}
+  <p class=cta>
+    Search players
+
+  <form class=cta method=get>
+    <input type=search name=search id=search value="{{ search }}">
+  </form>
+
+  {% if not search %}
+  <p class=cta>
+    <a href="{{ url_for('people_online') }}" class="button button-third">Online players</a>
+  {% endif %}
+  {% endif %}
+
+  {% if player_count != None %}
+  <p class=cta>
+    {% if player_count == 0 %}
+      There's no-one online at the moment.
+    {% elif player_count == 1 %}
+      There's one person online.<br>
+      Go say hi!
+    {% else %}
+      There are {{ player_count }} people online right now.
+    {% endif %}
+  {% endif %}
+
+{% endblock %}
+{% block extra %}
+<div class="section people">
+
+  {% for p in people %}
+  <div class="person section-first">
+
+    <img class=person-avatar src="{{ p.minecraft.avatar(size=128) }}">
+    <img class=person-signature src="{{ p.signature }}">
+    <p class=person-name>{{ p.real_name }}
+    <p class=person-minecraft>{{ p.minecraft.username }}
+    {% if p.invite %}
+    <p class=person-crsid>
+      Invited by {{ p.invite.invited_by.real_name }}
+      <a class=link href="mailto:{{ p.crsid }}@cam.ac.uk">{{ p.crsid }}</a>
+    {% else %}
+    <p class=person-crsid>
+      <a class=link href="mailto:{{ p.crsid }}@cam.ac.uk">{{ p.crsid }}</a>
+    {% endif %}
+
+  </div>
+  {% endfor %}
+
+  {% if is_filtered %}
+  <p class=cta>
+    <a href="{{ url_for('people_list') }}" class="button button-second">See all players</a>
+  {% endif %}
+
+
+</div>
+{% endblock %}
+{% block end%}
+
+{% if has_search %}
+<script>
+var search = $('#search')[0];
+var cursor = search.value.length;
+search.focus();
+search.setSelectionRange(cursor, cursor);
+</script>
+{% endif %}
+
+{% if player_count %}
+<script>
+setInterval(function() {
+  location.reload();
+}, 60000);
+</script>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends '_base.html' %}
+
+{% block header %}
+<div class="header header-big">
+  <h1 class="title title-big">CU Minecraft</h1>
+  <div class="tiles tiles-big"></div>
+</div>
+{% endblock %}
+
+
+{% block main %}
+
+  <p class=cta>
+    For people at Cambridge<br>
+    who like playing Minecraft.
+  </p>
+
+  <p class=cta>
+    <a class="button button-first" href="{{ url_for('login_menu') }}">
+      <strong>Join us!</strong>
+    </a>
+  </p>
+
+{% endblock %}
+{% block extra %}
+<a name=you-what></a>
+<div class="section section-first">
+  <p class=cta>We have a Minecraft server.</p>
+
+  <div class="faq row">
+    <div class="col col-left">
+
+      <h3>Who are you people?</h3>
+
+      <p>We're students at Cambridge University. We have our own Minecraft
+      server which we enjoy playing on. We started an as-yet-unofficial society
+      in order to meet other people who'd like to join in.
+
+    </div>
+    <div class="col col-right">
+
+      <h3>Can my friend come play too?</h3>
+      
+      <p>Sure! Once you've joined, send us an email from your @cam email
+      address. Tell us their name and email address, and we'll send them an
+      invite for you.
+
+    </div>
+  </div>
+  <div class="faq row">
+    <div class="col col-left">
+      <h3>Do I need anything to play?</h3>
+
+      <p>You need an official Minecraft account.
+
+      <p>If you haven't got one, you can <a
+         href="https://minecraft.net/store/minecraft">buy Minecraft from
+         Mojang's store</a>. If you haven't played before, be warned: Minecraft
+         is very addictive. Expect your grade to drop by a class at least. ;-)
+
+    </div>
+    <div class="col col-right">
+
+      <h3>Are you nice?</h3>
+      
+      <p>Definitely. :-)
+
+      <p>Our server is whitelisted, so only Cambridge students and their
+      friends can join. We use real names, so we know who everyone is. And
+      we're friendly!
+
+    </div>
+  </div>
+</div>
+<!--
+<div class="section section-second">
+  <p class=cta>We use some mods. (Just a few.)</p>
+
+  <div class="faq row">
+    <div class="col col-left">
+
+      <h3>Standard Minecraft is boring!<br>
+          Do you use mods?</h3>
+
+      <p>Yup! We play using a custom modpack. It includes science, industry,
+      trains, magic, and lots more. Sign up to see the full list!
+
+      <p>We tried to choose mods which would appeal to a wide range of people.
+      You'll have fun whether you've never played Minecraft before, or you like
+      using as many mods as possible!
+
+    </div>
+    <div class="col col-right">
+
+      <h3>I don't like mods!<br>
+          Can I play standard Minecraft?</h3>
+
+      <p>If you want! Some of us like the style of playing vanilla Minecraft, so that's
+      what we do.
+
+      <p>We tried to choose mods which you can avoid if you don't want to use
+      them. But you might still want to try a few of the mods—perhaps the
+      aesthetic ones. You never know, you might have fun...
+
+    </div>
+  </div>
+</div>
+-->
+<div class="section section-third">
+  <p class=cta>You should totally join.</p>
+
+  <div class="faq row">
+    <div class="col col-left">
+
+      <h3>My college has their own server!</h3>
+
+      <p>Good for you! We encourage people to play Minecraft and have fun,
+      whatever server they choose to play on.
+
+      <p>But feel free to stop by and have a look anyway!
+
+    </div>
+    <div class="col col-right">
+
+      <h3>But I want to get a degree!</h3>
+
+      <p>Sorry, we can't help you there.
+
+      <p>If you have any advice on how to get one, please let us know...
+
+    </div>
+  </div>
+</div>
+<div class="section section-main">
+
+  <p class=cta>Start playing now!</p>
+
+  <p class=cta>
+    <a class="button button-first" href="{{ url_for('login_menu') }}">
+      <strong>Join us</strong>
+    </a>
+  </p>
+
+</div>
+{% endblock %}
+

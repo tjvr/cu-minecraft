@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+
+{% block main %}
+  <p class=cta>
+    Admin Tools
+  <p class=centre>
+    <a class="button button-first" href="{{ url_for('control_invite') }}">
+      <span class="icon icon-small icon-email"></span>
+      Invite a friend
+    </a>
+    <br>
+    <a class="button button-second" href="{{ url_for('control_server') }}">
+      Update Server Info
+    </a>
+{% endblock %}
+

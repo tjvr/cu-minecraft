@@ -1,0 +1,5 @@
+psycopg2==2.6.1
+peewee==2.6.3
+python-raven==0.8.1
+regex==2015.09.14
+requests==2.7.0

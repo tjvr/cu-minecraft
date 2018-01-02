@@ -1,0 +1,40 @@
+{% extends '_base.html' %}
+
+{% block main %}
+<form method=post>
+
+{% if not is_sent %}
+  {% if is_cam_email %}
+  <p class=cta>
+    Cambridge student?<br>
+    Log in <a class=link href="{{ url_for('raven_login') }}">using Raven</a>.
+  {% elif email %}
+  <p class=cta>
+    We don't know that email.
+  {% else %}
+  <p class=cta>
+    Type your email:
+  {% endif %}
+
+  <p class=cta>
+    <input type=email name=email value="{{ email }}" autofocus>
+
+  <p class=centre>
+    We'll send you an email you can use to log in.
+
+  <p class=cta>
+    <button type=submit class="button button-first">
+      <span class="icon icon-small icon-email"></span> Send Email
+    </button>
+
+{% else %}
+  <p class=cta>
+    Sent! Go check your inbox.
+
+  <p class=cta>
+    <input type=email name=email value="{{ email }}" disabled>
+
+{% endif %}
+</form>
+{% endblock %}
+

@@ -1,0 +1,17 @@
+{% if person.first_name %}
+Hi {{ person.first_name }}!
+{% else %}
+Hi!
+{% endif %}
+
+Your friend {{ friend.real_name }} asked us to invite you to come play Minecraft.
+
+To join our server, go to this link:
+
+https://{{ request.host }}{{ url_for('email_auth', token=token) }}
+
+To find out more, check out our homepage:
+
+{{ request.scheme }}://{{ request.host }}{{ url_for('home') }}
+
+

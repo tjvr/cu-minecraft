@@ -1,0 +1,6 @@
+To login, go to this link:
+
+https://{{ request.host }}{{ url_for('email_auth', token=token) }}
+
+If you didn't request this, just ignore this message.
+
